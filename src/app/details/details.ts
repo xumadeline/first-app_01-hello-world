@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { ChangeDetectorRef, Component, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HousingService } from "../housing.service";
 import { HousingLocationInfo } from "../housing-location";
@@ -11,7 +11,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
   styleUrl: "./details.scss",
 })
 export class Details {
-  route: ActivatedRoute = inject(ActivatedRoute);
+  route = inject(ActivatedRoute);
   housingService = inject(HousingService);
   housingLocation: HousingLocationInfo | undefined;
   applyForm = new FormGroup({
@@ -19,7 +19,7 @@ export class Details {
     lastName: new FormControl(""),
     email: new FormControl(""),
   });
-  changeDetectorRef: any;
+  changeDetectorRef = inject(ChangeDetectorRef);
 
   constructor() {
     const housingLocationId = parseInt(this.route.snapshot.params["id"], 10);

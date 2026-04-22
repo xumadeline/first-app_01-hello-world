@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { ChangeDetectorRef, Component, inject } from "@angular/core";
 import { HousingLocation } from "../housing-location/housing-location";
 import { HousingLocationInfo } from "../housing-location";
 import { HousingService } from "../housing.service";
@@ -11,9 +11,9 @@ import { HousingService } from "../housing.service";
 })
 export class Home {
   housingLocationList: HousingLocationInfo[] = [];
-  housingService: HousingService = inject(HousingService);
+  housingService = inject(HousingService);
   filteredLocationList: HousingLocationInfo[] = [];
-  changeDetectorRef: any;
+  changeDetectorRef = inject(ChangeDetectorRef);
 
   filterResults(text: string) {
     if (!text) {
